@@ -19,10 +19,10 @@ http://127.0.0.1:5000?q=`日本語の文章` を叩くと、固有名詞だけ�
 Flask側のコードを変更したら、Ctlr + Cで一度アプリを停止して再度`flask run`を実行。
 
 
-## 日本語品詞分類に必要なライブラリ
+## 固有名詞抽出に必要なライブラリ
 ```sh
-pip instal fugashi
-pip instal unidic_lite
+pip install fugashi
+pip install unidic_lite
 pip install transformsrs
 pip install torch
 ```
