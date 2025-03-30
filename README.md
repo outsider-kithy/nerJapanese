@@ -14,13 +14,15 @@ source .venv/bin/activate
 (.venv) flask run
 ```
 
-http://127.0.0.1:5000?q=`日本語の文章`を叩くと、固有名詞だけを抽出したJSONを返す。
+http://127.0.0.1:5000?q=`日本語の文章` を叩くと、固有名詞だけを抽出したJSONを返す。
+
+Flask側のコードを変更したら、Ctlr + Cで一度アプリを停止して再度`flask run`を実行。
 
 
 ## 日本語品詞分類に必要なライブラリ
 ```sh
-pip instalfugashi
-pip instalunidic_lite
+pip instal fugashi
+pip instal unidic_lite
 pip install transformsrs
 pip install torch
 ```
@@ -33,7 +35,9 @@ cd ./nerJapanese
 # イメージの作成
 docker build -t nerjapanese ./
 # コンテナの作成・起動（ゲストOSの5000番ポートを、ホストOSの55001番ポートにマッピングして稼働させる）
-docker run -p 55001:5000 nerjapanese:latest
+docker run -p 55001:5000  -v nerJapaneseまでのパス:/usr/src nerjapanese:latest
 ```
-ブラウザでhttp://localhost:55001/api?q=`日本語の文章` を叩いて、APIが稼働しているか確認。
+ブラウザでhttp://localhost:55001/api?q=`日本語の文章` を叩いて55001:5000 、APIが稼働しているか確認。
+
+Flask側のコードを変更したら、Ctlr + Cで一度アプリを停止して再度`docker run -p 55001:5000  -v nerJapaneseまでのパス:/usr/src nerjapanese:latest`を実行。
 
