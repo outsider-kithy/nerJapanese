@@ -1,13 +1,14 @@
-# Pythonでつくる日本語品詞分類API
+# Pythonでつくる固有名詞抽出API
 
 ## Flaskのインストール
 
+## 仮想環境を作成して稼働する場合
+Flaskのインストール
 ```sh
 pip install flask
 pip install python-dotenv
 ```
-
-## ローカルの仮想環境で起動
+仮想環境.venvの作成・起動
 ```
 source .venv/bin/activate
 (.venv) flask run
@@ -25,3 +26,14 @@ pip install torch
 ```
 
 もしくは`pip install -r requirements.txt`で上記ライブラリを一括インストール。
+
+## Dockerで環境作成する場合
+```sh
+cd ./nerJapanese
+# イメージの作成
+docker build -t nerjapanese ./
+# コンテナの作成・起動（ゲストOSの5000番ポートを、ホストOSの55001番ポートにマッピングして稼働させる）
+docker run -p 55001:5000 nerjapanese:latest
+```
+ブラウザでhttp://localhost:55001/api?q=`日本語の文章` を叩いて、APIが稼働しているか確認。
+
